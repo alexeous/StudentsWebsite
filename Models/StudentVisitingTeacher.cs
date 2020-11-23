@@ -12,7 +12,5 @@ namespace StudentsWebsite.Models
         public Student Student { get; set; }
 
         public Teacher Teacher { get; set; }
-
-        public List<Mark> Marks { get; set; }
     }
 }
