@@ -1,9 +1,9 @@
-﻿namespace StudentsWebsite.Data.Models
+﻿using StudentsWebsite.Core.Models;
+
+namespace StudentsWebsite.Data.Models
 {
-    public class Teacher
-    {
-        public int Id { get; set; }
-        
+    public class Teacher : BaseEntity
+    {        
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
