@@ -53,6 +53,10 @@
   <ItemGroup>
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\IMarkRepository.cs" />
+    <Compile Include="Repositories\Impl\MarkRepository.cs" />
+    <Compile Include="Repositories\Impl\StudentRepository.cs" />
+    <Compile Include="Repositories\Impl\StudentVisitingTeacherRepository.cs" />
+    <Compile Include="Repositories\Impl\TeacherRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IStudentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
