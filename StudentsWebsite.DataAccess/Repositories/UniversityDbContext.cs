@@ -12,6 +12,12 @@ namespace StudentsWebsite.DataAccess.Repositories
     {
         private const string ConnectionStringName = "DbConnection";
 
+        static UniversityDbContext()
+        {
+            // Hack: without this line DLL required by EF may be not present
+            var ensureDllIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+        }
+
         public UniversityDbContext() 
             : base(ConnectionStringName)
         {
