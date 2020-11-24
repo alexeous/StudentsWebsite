@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentsWebsite.DataAccess.Repositories
 {
-    public interface IRepository<T> where T : class, IEntity
+    public interface IRepository<T> where T : class
     {
         Task InsertAsync(T obj);
     }
