@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\DbContextExtensions.cs" />
     <Compile Include="Repositories\IMarkRepository.cs" />
     <Compile Include="Repositories\Impl\MarkRepository.cs" />
     <Compile Include="Repositories\Impl\StudentRepository.cs" />

@@ -1,6 +1,7 @@
 ﻿using StudentsWebsite.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +17,29 @@ namespace StudentsWebsite.DataAccess.Repositories
             this.dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<T>> GetAllAsync()
+        {
+            return await dbContext.Set<T>().ToListAsync();
+        }
+
+        public Task<T> GetByIdAsync(int id)
+        {
+            return dbContext.Set<T>().FindAsync(id);
+        }
+
         public Task InsertAsync(T obj)
         {
-            dbContext.Set<T>().Add(obj);
-            return dbContext.SaveChangesAsync();
+            return dbContext.InsertAsync(obj);
+        }
+
+        public Task RemoveByIdAsync(int id)
+        {
+            return dbContext.RemoveAsync<T>(t => t.Id == id);
+        }
+
+        public Task UpdateAsync(T obj)
+        {
+            return dbContext.UpdateAsync(obj, t => t.Id == obj.Id);
         }
     }
 }
