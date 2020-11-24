@@ -1,6 +1,10 @@
-﻿using System;
+﻿using StudentsWebsite.Core.Models;
+using StudentsWebsite.DataAccess.Repositories;
+using StudentsWebsite.DataAccess.Repositories.Impl;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,9 +12,19 @@ namespace StudentsWebsite.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private UniversityDbContext dbContext;
+        private StudentRepository studentRepository;
+
+        public HomeController()
         {
-            return View();
+            dbContext = new UniversityDbContext();
+            studentRepository = new StudentRepository(dbContext);
+        }
+
+        public async Task<ActionResult> Index()
+        {
+            
+            return View(await studentRepository.GetAllAsync());
         }
 
         public ActionResult About()
