@@ -21,7 +21,7 @@ namespace StudentsWebsite.DataAccess.Repositories
 
         public DbSet<Teacher> Teachers { get; set; }
 
-        public DbSet<StudentVisitingTeacher> StudentsVisitingTeachers { get; set; }
+        public DbSet<StudentTeacher> StudentTeachers { get; set; }
 
         public DbSet<Mark> Marks { get; set; }
     }

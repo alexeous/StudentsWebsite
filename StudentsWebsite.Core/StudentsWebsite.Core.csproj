@@ -45,7 +45,7 @@
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\Mark.cs" />
     <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\StudentVisitingTeacher.cs" />
+    <Compile Include="Models\StudentTeacher.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

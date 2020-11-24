@@ -8,6 +8,11 @@ namespace StudentsWebsite.Core.Models
 
         public string LastName { get; set; }
 
+        /// <summary>
+        /// The info about the students visiting this teacher and also marks
+        /// </summary>
+        public virtual ICollection<StudentTeacher> StudentTeachers { get; set; }
+
         public string Subject { get; set; }
     }
 }

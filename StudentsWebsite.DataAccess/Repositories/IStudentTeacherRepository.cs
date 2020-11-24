@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentsWebsite.DataAccess.Repositories
 {
-    public interface IStudentVisitingTeacherRepository : IRepository<StudentVisitingTeacher>
+    public interface IStudentTeacherRepository : IRepository<StudentTeacher>
     {
     }
 }
