@@ -15,6 +15,7 @@ namespace StudentsWebsite.DataAccess.Repositories
         public UniversityDbContext() 
             : base(ConnectionStringName)
         {
+            Database.SetInitializer(new UniversityDbInitializer());
         }
 
         public DbSet<Student> Students { get; set; }
