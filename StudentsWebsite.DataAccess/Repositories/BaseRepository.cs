@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentsWebsite.DataAccess.Repositories
 {
-    class BaseRepository<T> : IRepository<T> where T : class, IEntity
+    public class BaseRepository<T> : IRepository<T> where T : class, IEntity
     {
         private UniversityDbContext dbContext;
 

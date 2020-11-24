@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentsWebsite.DataAccess.Repositories.Impl
 {
-    class StudentTeacherRepository : IStudentTeacherRepository
+    public class StudentTeacherRepository : IStudentTeacherRepository
     {
         private UniversityDbContext dbContext;
 

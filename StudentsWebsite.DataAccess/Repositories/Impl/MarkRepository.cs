@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentsWebsite.DataAccess.Repositories.Impl
 {
-    class MarkRepository : BaseRepository<Mark>
+    public class MarkRepository : BaseRepository<Mark>
     {
         public MarkRepository(UniversityDbContext dbContext) : base(dbContext)
         {

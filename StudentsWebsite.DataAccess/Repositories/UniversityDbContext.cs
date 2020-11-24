@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentsWebsite.DataAccess.Repositories
 {
-    class UniversityDbContext : DbContext
+    public class UniversityDbContext : DbContext
     {
         private const string ConnectionStringName = "DbConnection";
 

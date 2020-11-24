@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentsWebsite.DataAccess.Repositories.Impl
 {
-    class StudentRepository : BaseRepository<Student>
+    public class StudentRepository : BaseRepository<Student>
     {
         public StudentRepository(UniversityDbContext dbContext) 
             : base(dbContext)
