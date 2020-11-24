@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace StudentsWebsite.DataAccess.Repositories
 {
-    public interface IStudentTeacherRepository : IRepository<StudentTeacher>
+    public interface IStudentTeacherRepository
     {
+        Task InsertAsync(StudentTeacher studentTeacher);
     }
 }
