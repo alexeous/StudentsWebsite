@@ -1,6 +1,4 @@
-﻿using StudentsWebsite.Core.Models;
-
-namespace StudentsWebsite.Data.Models
+﻿namespace StudentsWebsite.Core.Models
 {
     public class StudentVisitingTeacher : BaseEntity
     {

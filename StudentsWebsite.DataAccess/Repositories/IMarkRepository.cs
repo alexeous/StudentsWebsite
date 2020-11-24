@@ -1,4 +1,4 @@
-﻿using StudentsWebsite.Data.Models;
+﻿using StudentsWebsite.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

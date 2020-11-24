@@ -1,6 +1,6 @@
-﻿using StudentsWebsite.Core.Models;
+﻿using System.Collections.Generic;
 
-namespace StudentsWebsite.Data.Models
+namespace StudentsWebsite.Core.Models
 {
     public class Teacher : BaseEntity
     {        
