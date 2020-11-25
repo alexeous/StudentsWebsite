@@ -92,6 +92,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositionRoot.cs" />
+    <Compile Include="Modules\RepositoryModule.cs" />
+    <Compile Include="Modules\UniversityDbContextModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,5 +110,6 @@
       <Name>StudentsWebsite.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

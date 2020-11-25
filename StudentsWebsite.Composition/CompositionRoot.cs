@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using StudentsWebsite.Composition.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace StudentsWebsite.Composition
 
             builder.RegisterControllers(mvcApplicationAssembly);
 
+            builder.RegisterModule(new UniversityDbContextModule());
+            builder.RegisterModule(new RepositoryModule());
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
