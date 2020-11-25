@@ -20,7 +20,7 @@ namespace StudentsWebsite.Composition
 
 
             var container = builder.Build();
-            DependencyResolver.SetResolver(container);
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }
