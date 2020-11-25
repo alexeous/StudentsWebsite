@@ -9,7 +9,7 @@ namespace StudentsWebsite.Core.Models
         /// <summary>
         /// The students visiting this teacher and also marks
         /// </summary>
-        public virtual ICollection<Student> Students { get; set; }
+        public ICollection<Student> Students { get; set; }
 
         public string Subject { get; set; }
     }
