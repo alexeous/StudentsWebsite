@@ -1,4 +1,5 @@
-﻿using StudentsWebsite.DataAccess;
+﻿using StudentsWebsite.Composition;
+using StudentsWebsite.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace StudentsWebsite
     {
         protected void Application_Start()
         {
+            CompositionRoot.RegisterDependencies(typeof(MvcApplication).Assembly);
             UniversityDbHelper.EnsureDatabaseIsCreated();
 
             AreaRegistration.RegisterAllAreas();
