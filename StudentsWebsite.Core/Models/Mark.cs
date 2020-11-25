@@ -2,7 +2,9 @@
 {
     public class Mark : BaseEntity
     {
-        public StudentTeacher StudentTeacher { get; set; }
+        public Student Student { get; set; }
+
+        public Teacher Teacher { get; set; }
 
         public int MarkValue { get; set; }
     }

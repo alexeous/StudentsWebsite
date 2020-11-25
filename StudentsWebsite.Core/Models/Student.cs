@@ -9,8 +9,10 @@ namespace StudentsWebsite.Core.Models
         public string LastName { get; set; }
 
         /// <summary>
-        /// The info about the teachers being visited by this student and also marks
+        /// The teachers being visited by this student
         /// </summary>
-        public virtual ICollection<StudentTeacher> StudentTeachers { get; set; }
+        public virtual ICollection<Teacher> Teachers { get; set; }
+
+        public virtual ICollection<Mark> Marks { get; set; }
     }
 }

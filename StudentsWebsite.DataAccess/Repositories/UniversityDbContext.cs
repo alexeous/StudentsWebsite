@@ -28,13 +28,6 @@ namespace StudentsWebsite.DataAccess.Repositories
 
         public DbSet<Teacher> Teachers { get; set; }
 
-        public DbSet<StudentTeacher> StudentTeachers { get; set; }
-
         public DbSet<Mark> Marks { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<StudentTeacher>().HasKey(st => new { st.StudentId, st.TeacherId });
-        }
     }
 }

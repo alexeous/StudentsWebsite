@@ -15,7 +15,6 @@ namespace StudentsWebsite.Composition.Modules
         {
             builder.RegisterType<StudentRepository>().As<IStudentRepository>().InstancePerRequest();
             builder.RegisterType<TeacherRepository>().As<ITeacherRepository>().InstancePerRequest();
-            builder.RegisterType<StudentTeacherRepository>().As<IStudentTeacherRepository>().InstancePerRequest();
             builder.RegisterType<MarkRepository>().As<IMarkRepository>().InstancePerRequest();
         }
     }
