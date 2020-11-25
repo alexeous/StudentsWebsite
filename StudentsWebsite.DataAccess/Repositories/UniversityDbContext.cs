@@ -29,5 +29,7 @@ namespace StudentsWebsite.DataAccess.Repositories
         public DbSet<Teacher> Teachers { get; set; }
 
         public DbSet<Mark> Marks { get; set; }
+
+        public DbSet<User> Users { get; set; }
     }
 }
