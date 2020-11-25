@@ -12,13 +12,11 @@ namespace StudentsWebsite.Controllers
 {
     public class HomeController : Controller
     {
-        private UniversityDbContext dbContext;
-        private StudentRepository studentRepository;
+        private IStudentRepository studentRepository;
 
-        public HomeController()
+        public HomeController(IStudentRepository studentRepository)
         {
-            dbContext = new UniversityDbContext();
-            studentRepository = new StudentRepository(dbContext);
+            this.studentRepository = studentRepository;
         }
 
         public async Task<ActionResult> Index()
