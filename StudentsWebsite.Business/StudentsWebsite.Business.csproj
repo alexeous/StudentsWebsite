@@ -42,6 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registration\Impl\StudentRegistrationService.cs" />
+    <Compile Include="Registration\Impl\UserRegistrationService.cs" />
+    <Compile Include="Registration\IStudentRegistrationService.cs" />
+    <Compile Include="Registration\IUserRegistrationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StudentsWebsite.Core\StudentsWebsite.Core.csproj">
@@ -52,6 +56,9 @@
       <Project>{a4761f08-bd4d-43a2-a4ca-38b537cb75e0}</Project>
       <Name>StudentsWebsite.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Authentication\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
