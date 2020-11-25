@@ -14,5 +14,7 @@ namespace StudentsWebsite.Core.Models
         public virtual ICollection<Student> Students { get; set; }
 
         public string Subject { get; set; }
+
+        public User User { get; set; }
     }
 }
