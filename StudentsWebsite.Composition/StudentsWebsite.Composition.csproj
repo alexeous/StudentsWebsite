@@ -98,5 +98,15 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StudentsWebsite.Business\StudentsWebsite.Business.csproj">
+      <Project>{d0e0cbad-8362-4de1-940b-72454dfacba2}</Project>
+      <Name>StudentsWebsite.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StudentsWebsite.DataAccess\StudentsWebsite.DataAccess.csproj">
+      <Project>{a4761f08-bd4d-43a2-a4ca-38b537cb75e0}</Project>
+      <Name>StudentsWebsite.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
