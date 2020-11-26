@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentsWebsite.Business.Registration.Impl
 {
-    class UserRegistrationService : IUserRegistrationService
+    public class UserRegistrationService : IUserRegistrationService
     {
         private IUserRepository userRepository;
 

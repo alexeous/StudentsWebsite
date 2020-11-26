@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentsWebsite.Business.Registration
 {
-    interface ITeacherRegistrationService
+    public interface ITeacherRegistrationService
     {
         Task Register(Teacher teacher);
     }
