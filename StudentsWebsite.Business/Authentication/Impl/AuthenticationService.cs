@@ -23,7 +23,7 @@ namespace StudentsWebsite.Business.Authentication.Impl
         public async Task<User> Authenticate(string email, string password)
         {
             User user = await userRepository.GetByEmailAsync(email);
-            if (passwordService.VerifyPassword(password, user.Password))
+            if (user != null && passwordService.VerifyPassword(password, user.Password))
             {
                 return user;
             }
