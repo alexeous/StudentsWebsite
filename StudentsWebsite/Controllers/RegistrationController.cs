@@ -8,12 +8,12 @@ namespace StudentsWebsite.Controllers
 {
     public class RegistrationController : Controller
     {
-        public ActionResult RegisterStudent()
+        public ActionResult Student()
         {
             return View();
         }
 
-        public ActionResult RegisterTeacher()
+        public ActionResult Teacher()
         {
             return View();
         }

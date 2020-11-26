@@ -209,8 +209,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Registration\RegisterStudent.cshtml" />
-    <Content Include="Views\Registration\RegisterTeacher.cshtml" />
+    <Content Include="Views\Registration\Student.cshtml" />
+    <Content Include="Views\Registration\Teacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
