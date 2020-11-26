@@ -17,12 +17,12 @@ namespace StudentsWebsite.DataAccess.Repositories
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await IncludeProperties(dbContext.Set<T>()).ToListAsync();
+            return await SetWithIncludedProperties().ToListAsync();
         }
 
         public Task<T> GetByIdAsync(int id)
         {
-            return IncludeProperties(dbContext.Set<T>()).FirstOrDefaultAsync(t => t.Id == id);
+            return SetWithIncludedProperties().FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public Task InsertAsync(T obj)
@@ -38,6 +38,15 @@ namespace StudentsWebsite.DataAccess.Repositories
         public Task UpdateAsync(T obj)
         {
             return dbContext.UpdateAsync(obj, t => t.Id == obj.Id);
+        }
+
+        /// <summary>
+        /// The query results will include the properties included in <see cref="IncludeProperties(DbSet{T})"/>
+        /// </summary>
+        /// <returns></returns>
+        protected IQueryable<T> SetWithIncludedProperties()
+        {
+            return IncludeProperties(dbContext.Set<T>());
         }
 
         protected virtual IQueryable<T> IncludeProperties(DbSet<T> set)
