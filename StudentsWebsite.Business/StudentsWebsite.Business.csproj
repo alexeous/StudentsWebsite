@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\IAuthenticationService.cs" />
+    <Compile Include="Authentication\Impl\AuthenticationService.cs" />
     <Compile Include="Password\Impl\NoHashingPasswordService.cs" />
     <Compile Include="Password\IPasswordService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,8 +64,6 @@
       <Name>StudentsWebsite.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Authentication\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
