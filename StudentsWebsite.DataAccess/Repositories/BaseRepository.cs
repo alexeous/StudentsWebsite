@@ -1,9 +1,7 @@
 ﻿using StudentsWebsite.Core.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentsWebsite.DataAccess.Repositories
@@ -19,12 +17,12 @@ namespace StudentsWebsite.DataAccess.Repositories
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await dbContext.Set<T>().ToListAsync();
+            return await IncludeProperties(dbContext.Set<T>()).ToListAsync();
         }
 
         public Task<T> GetByIdAsync(int id)
         {
-            return dbContext.Set<T>().FindAsync(id);
+            return IncludeProperties(dbContext.Set<T>()).FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public Task InsertAsync(T obj)
@@ -40,6 +38,11 @@ namespace StudentsWebsite.DataAccess.Repositories
         public Task UpdateAsync(T obj)
         {
             return dbContext.UpdateAsync(obj, t => t.Id == obj.Id);
+        }
+
+        protected virtual IQueryable<T> IncludeProperties(DbSet<T> set)
+        {
+            return set;
         }
     }
 }
