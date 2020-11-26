@@ -3,5 +3,104 @@
     ViewBag.Title = "Teacher Registration";
 }
 
-<h2>Register Teacher</h2>
+<h2>Teacher Registration</h2>
 
+
+@Scripts.Render("~/bundles/jquery")
+
+<style>
+    label {
+        display: inline-block;
+        width: 150px;
+    }
+
+    .item {
+        margin: 5px;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $("#registerBtn").click(function () {
+            clearErrors();
+            sendRequest();
+        });
+    });
+
+    function sendRequest() {
+        $.ajax({
+            url: "/api/register/teacher",
+            type: "POST",
+            data: getUserData(),
+            success: function (data) {
+                window.location.href = "@Url.Action("Login", "Login")";
+            },
+            error: function (data) {
+                if (data.responseJSON.ModelState != undefined) {
+                    displayErrors(data.responseJSON.ModelState);
+                }
+                else {
+                    displayErrors(data.responseJSON);
+                }
+            }
+        });
+    }
+
+    function getUserData() {
+        return {
+            FirstName: $("#firstName").val(),
+            LastName: $("#lastName").val(),
+            Subject: $("#subject").val(),
+            Email: $("#email").val(),
+            Password: $("#password").val(),
+            ConfirmPassword: $("#confirmPassword").val(),
+            SecretWord: $("#secretWord").val()
+        };
+    }
+
+    function clearErrors() {
+        $("#errors").addClass("hidden");
+        $("#errors").text("");
+    }
+
+    function displayErrors(errors) {
+        $("#errors").removeClass("hidden");
+        $.each(errors, (_, error) => {
+            $("#errors").append("<div>" + error + "</div>");
+        });
+    }
+</script>
+
+<h2>Student Registration</h2>
+
+<div>
+    <div class="item">
+        <label>First Name</label>
+        <input type="text" id="firstName" />
+    </div>
+    <div class="item">
+        <label>Last Name</label>
+        <input type="text" id="lastName" />
+    </div>
+    <div class="item">
+        <label>Subject</label>
+        <input type="text" id="subject" />
+    </div>
+    <div class="item">
+        <label>Email</label>
+        <input type="email" id="email" />
+    </div>
+    <div class="item">
+        <label>Password</label>
+        <input type="password" id="password" />
+    </div>
+    <div class="item">
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" />
+    </div>
+    <div class="item">
+        <label>Secret Word</label>
+        <input type="text" id="secretWord" />
+    </div>
+    <div class="item alert-danger hidden" id="errors"></div>
+    <button id="registerBtn">Register the Teacher</button>
+</div>
