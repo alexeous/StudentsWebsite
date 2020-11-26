@@ -8,7 +8,7 @@ namespace StudentsWebsite.DataAccess.Repositories
 {
     public class BaseRepository<T> : IRepository<T> where T : class, IEntity
     {
-        private UniversityDbContext dbContext;
+        protected readonly UniversityDbContext dbContext;
 
         public BaseRepository(UniversityDbContext dbContext)
         {
