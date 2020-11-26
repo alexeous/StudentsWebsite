@@ -9,6 +9,6 @@ namespace StudentsWebsite.Business.Registration
 {
     public interface ITeacherRegistrationService
     {
-        Task Register(Teacher teacher);
+        Task Register(Teacher teacher, string secretWord);
     }
 }

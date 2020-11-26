@@ -10,6 +10,8 @@ namespace StudentsWebsite.Business.Registration.Impl
 {
     public class TeacherRegistrationService : ITeacherRegistrationService
     {
+        private const string SecretWord = "кодовоеслово";
+
         private IUserRegistrationService userRegistration;
         private ITeacherRepository teacherRepository;
 
@@ -19,8 +21,13 @@ namespace StudentsWebsite.Business.Registration.Impl
             this.teacherRepository = teacherRepository;
         }
 
-        public async Task Register(Teacher teacher)
+        public async Task Register(Teacher teacher, string secretWord)
         {
+            if (secretWord != SecretWord)
+            {
+                throw new InvalidSecretWordException();
+            }
+
             await userRegistration.Register(teacher.User);
             await teacherRepository.InsertAsync(teacher);
         }
