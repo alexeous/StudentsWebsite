@@ -163,6 +163,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Composition\CompositionRoot.cs" />
+    <Compile Include="Composition\Modules\AuthenticationModule.cs" />
     <Compile Include="Composition\Modules\PasswordModule.cs" />
     <Compile Include="Composition\Modules\RegistrationModule.cs" />
     <Compile Include="Composition\Modules\RepositoryModule.cs" />
