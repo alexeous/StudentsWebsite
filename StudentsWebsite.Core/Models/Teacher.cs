@@ -2,7 +2,7 @@
 
 namespace StudentsWebsite.Core.Models
 {
-    public class Teacher : User
+    public class Teacher : BaseEntity
     {
         public User User { get; set; }
 
