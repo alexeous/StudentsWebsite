@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Password\Impl\NoHashingPasswordService.cs" />
+    <Compile Include="Password\IPasswordService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration\Impl\StudentRegistrationService.cs" />
     <Compile Include="Registration\Impl\TeacherRegistrationService.cs" />

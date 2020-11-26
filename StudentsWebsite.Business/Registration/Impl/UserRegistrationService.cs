@@ -1,4 +1,5 @@
-﻿using StudentsWebsite.Core.Models;
+﻿using StudentsWebsite.Business.Password;
+using StudentsWebsite.Core.Models;
 using StudentsWebsite.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace StudentsWebsite.Business.Registration.Impl
     public class UserRegistrationService : IUserRegistrationService
     {
         private IUserRepository userRepository;
+        private IPasswordService passwordService;
 
-        public UserRegistrationService(IUserRepository userRepository)
+        public UserRegistrationService(IUserRepository userRepository, IPasswordService passwordService)
         {
             this.userRepository = userRepository;
+            this.passwordService = passwordService;
         }
 
         public async Task Register(User user)
@@ -23,6 +26,7 @@ namespace StudentsWebsite.Business.Registration.Impl
             {
                 throw new UserExistsException();
             }
+            user.Password = passwordService.HashPassword(user.Password);
             await userRepository.InsertAsync(user);
         }
     }
