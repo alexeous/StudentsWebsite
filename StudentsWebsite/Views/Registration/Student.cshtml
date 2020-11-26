@@ -28,7 +28,7 @@
             type: "POST",
             data: getUserData(),
             success: function (data) {
-                window.location.href = "@Url.Action("Index", "Home")";
+                window.location.href = "@Url.Action("Login", "Login")";
             },
             error: function (data) {
                 if (data.responseJSON.ModelState != undefined) {
