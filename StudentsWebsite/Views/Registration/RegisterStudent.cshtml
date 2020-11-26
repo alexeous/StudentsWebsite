@@ -2,5 +2,91 @@
     ViewBag.Title = "Student Registration";
 }
 
-<h2>Register Student</h2>
+@Scripts.Render("~/bundles/jquery")
 
+<style>
+    label {
+        display: inline-block;
+        width: 150px;
+    }
+
+    .item {
+        margin: 5px;
+    }
+
+    
+</style>
+<script>
+    $(document).ready(function () {
+        $("#registerBtn").click(function () {
+            clearErrors();
+            sendRequest();
+        });
+    });
+
+    function sendRequest() {
+        $.ajax({
+            url: "/api/StudentRegistration",
+            type: "POST",
+            data: getUserData(),
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                displayErrors(data.responseJSON.ModelState);
+            }
+        });
+    }
+
+    function getUserData() {
+        return {
+            FirstName: $("#firstName").val(),
+            LastName: $("#lastName").val(),
+            Email: $("#email").val(),
+            Password: $("#password").val(),
+            ConfirmPassword: $("#confirmPassword").val(),
+        };
+    }
+
+    function clearErrors() {
+        $("#errors").addClass("hidden");
+        $("#errors").text("");
+    }
+
+    function displayErrors(errors) {
+        $("#errors").removeClass("hidden");
+        $.each(errors, (_, error) => {
+            $("#errors").append("<div>" + error + "</div>");
+        });
+    }
+</script>
+
+<h2>Student Registration</h2>
+
+<div>
+    <div class="item">
+        <label>First Name</label>
+        <input type="text" id="firstName" />
+    </div>
+    <div class="item">
+        <label>Last Name</label>
+        <input type="text" id="lastName" />
+    </div>
+    <div class="item">
+        <label>Email</label>
+        <input type="email" id="email" />
+    </div>
+    <div class="item">
+        <label>Password</label>
+        <input type="password" id="password" />
+    </div>
+    <div class="item">
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" />
+    </div>
+    <div class="item alert-danger hidden" id="errors">
+
+    </div>
+    <button id="registerBtn">Register the Student</button>
+    </div>
