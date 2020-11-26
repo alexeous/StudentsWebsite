@@ -14,7 +14,7 @@ namespace StudentsWebsite
     {
         protected void Application_Start()
         {
-            CompositionRoot.RegisterDependencies(typeof(MvcApplication).Assembly);
+            CompositionRoot.RegisterDependencies();
             UniversityDbHelper.EnsureDatabaseIsCreated();
 
             AreaRegistration.RegisterAllAreas();

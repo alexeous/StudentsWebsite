@@ -13,11 +13,11 @@ namespace StudentsWebsite.Composition
 {
     public static class CompositionRoot
     {
-        public static void RegisterDependencies(Assembly mvcApplicationAssembly)
+        public static void RegisterDependencies()
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterControllers(mvcApplicationAssembly);
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
             builder.RegisterModule(new UniversityDbContextModule());
             builder.RegisterModule(new RepositoryModule());
