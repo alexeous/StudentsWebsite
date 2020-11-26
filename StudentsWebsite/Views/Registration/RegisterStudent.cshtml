@@ -33,7 +33,12 @@
                 window.location.href = "@Url.Action("Index", "Home")";
             },
             error: function (data) {
-                displayErrors(data.responseJSON.ModelState);
+                if (data.responseJSON.ModelState != undefined) {
+                    displayErrors(data.responseJSON.ModelState);
+                }
+                else {
+                    displayErrors(data.responseJSON);
+                }
             }
         });
     }
