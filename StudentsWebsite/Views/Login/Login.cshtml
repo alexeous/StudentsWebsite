@@ -1,9 +1,8 @@
 ﻿@{
-    ViewBag.Title = "Student Registration";
+    ViewBag.Title = "Log In";
 }
 
 @Scripts.Render("~/bundles/jquery")
-
 <style>
     label {
         display: inline-block;
@@ -12,11 +11,11 @@
 
     .item {
         margin: 5px;
-    }    
+    }
 </style>
 <script>
     $(document).ready(function () {
-        $("#registerBtn").click(function () {
+        $("#loginBtn").click(function () {
             clearErrors();
             sendRequest();
         });
@@ -24,14 +23,18 @@
 
     function sendRequest() {
         $.ajax({
-            url: "/api/register/student",
+            url: "/api/login",
             type: "POST",
             data: getUserData(),
             success: function (data) {
+                alert("Hello, " + data.FirstName + " " + data.LastName);
                 window.location.href = "@Url.Action("Index", "Home")";
             },
             error: function (data) {
-                if (data.responseJSON.ModelState != undefined) {
+                if (data.status == 401) {
+                    displayErrors([ "Invalid Email or password" ]);
+                }
+                else if (data.responseJSON.ModelState != undefined) {
                     displayErrors(data.responseJSON.ModelState);
                 }
                 else {
@@ -43,11 +46,8 @@
 
     function getUserData() {
         return {
-            FirstName: $("#firstName").val(),
-            LastName: $("#lastName").val(),
             Email: $("#email").val(),
-            Password: $("#password").val(),
-            ConfirmPassword: $("#confirmPassword").val(),
+            Password: $("#password").val()
         };
     }
 
@@ -64,17 +64,9 @@
     }
 </script>
 
-<h2>Student Registration</h2>
+<h2>Log In</h2>
 
 <div>
-    <div class="item">
-        <label>First Name</label>
-        <input type="text" id="firstName" />
-    </div>
-    <div class="item">
-        <label>Last Name</label>
-        <input type="text" id="lastName" />
-    </div>
     <div class="item">
         <label>Email</label>
         <input type="email" id="email" />
@@ -84,9 +76,7 @@
         <input type="password" id="password" />
     </div>
     <div class="item">
-        <label>Confirm Password</label>
-        <input type="password" id="confirmPassword" />
+        <button id="loginBtn">Log In</button>
     </div>
     <div class="item alert-danger hidden" id="errors"></div>
-    <button id="registerBtn">Register the Student</button>
 </div>
