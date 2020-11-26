@@ -17,13 +17,13 @@ namespace StudentsWebsite.Business.Registration.Impl
             this.userRepository = userRepository;
         }
 
-        public Task Register(User user)
+        public async Task Register(User user)
         {
-            if (userRepository.GetByEmailAsync(user.Email) != null)
+            if (await userRepository.GetByEmailAsync(user.Email) != null)
             {
                 throw new UserExistsException();
             }
-            return userRepository.InsertAsync(user);
+            await userRepository.InsertAsync(user);
         }
     }
 }
