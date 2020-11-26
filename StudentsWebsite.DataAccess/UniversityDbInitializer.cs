@@ -15,11 +15,11 @@ namespace StudentsWebsite.DataAccess
         {
             Student[] students =
             {
-                new Student { User = new User { FirstName = "Freddy", LastName = "Howard" } },
-                new Student { User = new User { FirstName = "Mark", LastName = "Jackson" } },
-                new Student { User = new User { FirstName = "Lucy", LastName = "Persson" } },
-                new Student { User = new User { FirstName = "Anna", LastName = "Golubeva" } },
-                new Student { User = new User { FirstName = "Bill", LastName = "Gates"} }
+                new Student { User = new User { FirstName = "Freddy", LastName = "Howard", Email = "fd@gmail.com" } },
+                new Student { User = new User { FirstName = "Mark", LastName = "Jackson", Email = "mj@gmail.com" } },
+                new Student { User = new User { FirstName = "Lucy", LastName = "Persson", Email = "lp@gmail.com" } },
+                new Student { User = new User { FirstName = "Anna", LastName = "Golubeva", Email = "ag@gmail.com" } },
+                new Student { User = new User { FirstName = "Bill", LastName = "Gates", Email = "bg@gmail.com" } }
             };
 
             context.Students.AddRange(students);
