@@ -29,9 +29,8 @@
             url: "/api/StudentRegistration",
             type: "POST",
             data: getUserData(),
-            dataType: "json",
             success: function (data) {
-                console.log(data);
+                window.location.href = "@Url.Action("Index", "Home")";
             },
             error: function (data) {
                 displayErrors(data.responseJSON.ModelState);
