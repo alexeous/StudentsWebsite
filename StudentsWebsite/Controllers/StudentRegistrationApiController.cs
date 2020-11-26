@@ -11,11 +11,12 @@ using System.Web.Http;
 
 namespace StudentsWebsite.Controllers
 {
-    public class StudentRegistrationController : ApiController
+    [Route("api/register/student")]
+    public class StudentRegistrationApiController : ApiController
     {
         private IStudentRegistrationService studentRegistration;
 
-        public StudentRegistrationController(IStudentRegistrationService studentRegistration)
+        public StudentRegistrationApiController(IStudentRegistrationService studentRegistration)
         {
             this.studentRegistration = studentRegistration;
         }

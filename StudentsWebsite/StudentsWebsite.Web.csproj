@@ -168,7 +168,7 @@
     <Compile Include="Composition\Modules\UniversityDbContextModule.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="Controllers\StudentRegistrationController.cs" />
+    <Compile Include="Controllers\StudentRegistrationApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
