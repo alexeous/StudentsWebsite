@@ -43,9 +43,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration\Impl\StudentRegistrationService.cs" />
+    <Compile Include="Registration\Impl\TeacherRegistrationService.cs" />
     <Compile Include="Registration\Impl\UserRegistrationService.cs" />
     <Compile Include="Registration\IStudentRegistrationService.cs" />
+    <Compile Include="Registration\ITeacherRegistrationService.cs" />
     <Compile Include="Registration\IUserRegistrationService.cs" />
+    <Compile Include="Registration\UserExistsException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StudentsWebsite.Core\StudentsWebsite.Core.csproj">
