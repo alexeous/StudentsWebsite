@@ -21,14 +21,14 @@ namespace StudentsWebsite.Business.Registration.Impl
             this.teacherRepository = teacherRepository;
         }
 
-        public async Task Register(Teacher teacher, string secretWord)
+        public async Task RegisterAsync(Teacher teacher, string secretWord)
         {
             if (secretWord != SecretWord)
             {
                 throw new InvalidSecretWordException();
             }
 
-            await userRegistration.Register(teacher.User);
+            await userRegistration.RegisterAsync(teacher.User);
             await teacherRepository.InsertAsync(teacher);
         }
     }

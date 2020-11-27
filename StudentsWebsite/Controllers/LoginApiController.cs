@@ -26,7 +26,7 @@ namespace StudentsWebsite.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await authentication.Authenticate(value.Email, value.Password);
+                User user = await authentication.AuthenticateAsync(value.Email, value.Password);
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(user.Email, true);

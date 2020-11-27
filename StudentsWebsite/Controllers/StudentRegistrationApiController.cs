@@ -37,7 +37,7 @@ namespace StudentsWebsite.Controllers
                 };
                 try
                 {
-                    await studentRegistration.Register(student);
+                    await studentRegistration.RegisterAsync(student);
                 }
                 catch (UserExistsException)
                 {

@@ -38,7 +38,7 @@ namespace StudentsWebsite.Controllers
                 };
                 try
                 {
-                    await teacherRegistration.Register(teacher, model.SecretWord);
+                    await teacherRegistration.RegisterAsync(teacher, model.SecretWord);
                 }
                 catch (UserExistsException)
                 {

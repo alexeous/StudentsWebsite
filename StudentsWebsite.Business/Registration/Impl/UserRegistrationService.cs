@@ -20,7 +20,7 @@ namespace StudentsWebsite.Business.Registration.Impl
             this.passwordService = passwordService;
         }
 
-        public async Task Register(User user)
+        public async Task RegisterAsync(User user)
         {
             if (await userRepository.GetByEmailAsync(user.Email) != null)
             {

@@ -9,6 +9,6 @@ namespace StudentsWebsite.Business.Registration
 {
     public interface IUserRegistrationService
     {
-        Task Register(User user);
+        Task RegisterAsync(User user);
     }
 }

@@ -19,9 +19,9 @@ namespace StudentsWebsite.Business.Registration.Impl
             this.studentRepository = studentRepository;
         }
 
-        public async Task Register(Student student)
+        public async Task RegisterAsync(Student student)
         {
-            await userRegistration.Register(student.User);
+            await userRegistration.RegisterAsync(student.User);
             await studentRepository.InsertAsync(student);
         }
     }
