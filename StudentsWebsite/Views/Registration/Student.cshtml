@@ -3,6 +3,7 @@
 }
 
 @Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/backbone")
 
 <style>
     label {
@@ -12,61 +13,12 @@
 
     .item {
         margin: 5px;
-    }    
+    }
 </style>
-<script>
-    $(document).ready(function () {
-        $("#registerBtn").click(function () {
-            clearErrors();
-            sendRequest();
-        });
-    });
-
-    function sendRequest() {
-        $.ajax({
-            url: "/api/register/student",
-            type: "POST",
-            data: getUserData(),
-            success: function (data) {
-                window.location.href = "@Url.Action("Login", "Login")";
-            },
-            error: function (data) {
-                if (data.responseJSON.ModelState != undefined) {
-                    displayErrors(data.responseJSON.ModelState);
-                }
-                else {
-                    displayErrors(data.responseJSON);
-                }
-            }
-        });
-    }
-
-    function getUserData() {
-        return {
-            FirstName: $("#firstName").val(),
-            LastName: $("#lastName").val(),
-            Email: $("#email").val(),
-            Password: $("#password").val(),
-            ConfirmPassword: $("#confirmPassword").val(),
-        };
-    }
-
-    function clearErrors() {
-        $("#errors").addClass("hidden");
-        $("#errors").text("");
-    }
-
-    function displayErrors(errors) {
-        $("#errors").removeClass("hidden");
-        $.each(errors, (_, error) => {
-            $("#errors").append("<div>" + error + "</div>");
-        });
-    }
-</script>
 
 <h2>Student Registration</h2>
 
-<div>
+<div id="registration-form">
     <div class="item">
         <label>First Name</label>
         <input type="text" id="firstName" />
@@ -88,5 +40,60 @@
         <input type="password" id="confirmPassword" />
     </div>
     <div class="item alert-danger hidden" id="errors"></div>
-    <button id="registerBtn">Register the Student</button>
+    <button id="register-button">Register the Student</button>
 </div>
+
+<script>
+    var StudentModel = Backbone.Model.extend({
+        url: "/api/register/student"
+    });
+
+    var StudentRegisterView = Backbone.View.extend({
+        model: new StudentModel(),
+        el: "#registration-form",
+        events: {
+            "click #register-button": "register"
+        },
+
+        register: function () {
+            $("#errors").addClass("hidden");
+            $("#errors").text("");
+
+            this.model.save({
+                firstName: this.$("#firstName").val(),
+                lastName: this.$("#lastName").val(),
+                email: this.$("#email").val(),
+                password: this.$("#password").val(),
+                confirmPassword: this.$("#confirmPassword").val()
+            },
+                {
+                    success: function () {
+                        this.redirectToLoginPage();
+                    },
+                    error: (model, response) => {
+                        // Backbone treats empty json in the response body is treated as an error for some reason
+                        if (response.status == 200) { 
+                            this.redirectToLoginPage();
+                            return;
+                        }
+                        this.displayErrors(response);
+                    }
+                });
+        },
+
+        redirectToLoginPage: function () {
+            window.location.href = "@Url.Action("Login", "Login")";
+        },
+
+        displayErrors: function (response) {
+            this.$("#errors").removeClass("hidden");
+            console.log(response);
+            let errors = response.responseJSON.ModelState || response.responseJSON;
+            $.each(errors, (_, error) => {
+                this.$("#errors").append("<div>" + error + "</div>");
+            });
+        }
+    });
+
+    var registerView = new StudentRegisterView();
+</script>
