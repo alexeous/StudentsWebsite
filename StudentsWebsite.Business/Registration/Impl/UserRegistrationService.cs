@@ -22,6 +22,10 @@ namespace StudentsWebsite.Business.Registration.Impl
 
         public async Task RegisterAsync(User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
             if (await userRepository.GetByEmailAsync(user.Email) != null)
             {
                 throw new UserExistsException();

@@ -21,6 +21,10 @@ namespace StudentsWebsite.Business.Registration.Impl
 
         public async Task RegisterAsync(Student student)
         {
+            if (student == null)
+            {
+                throw new ArgumentNullException(nameof(student));
+            }
             await userRegistration.RegisterAsync(student.User);
             await studentRepository.InsertAsync(student);
         }

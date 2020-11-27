@@ -23,6 +23,10 @@ namespace StudentsWebsite.Business.Registration.Impl
 
         public async Task RegisterAsync(Teacher teacher, string secretWord)
         {
+            if(teacher == null)
+            {
+                throw new ArgumentNullException(nameof(teacher));
+            }
             if (secretWord != SecretWord)
             {
                 throw new InvalidSecretWordException();
