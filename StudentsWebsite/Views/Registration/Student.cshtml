@@ -67,7 +67,7 @@
                 confirmPassword: this.$("#confirmPassword").val()
             },
                 {
-                    success: function () {
+                    success: () => {
                         this.redirectToLoginPage();
                     },
                     error: (model, response) => {
@@ -87,7 +87,6 @@
 
         displayErrors: function (response) {
             this.$("#errors").removeClass("hidden");
-            console.log(response);
             let errors = response.responseJSON.ModelState || response.responseJSON;
             $.each(errors, (_, error) => {
                 this.$("#errors").append("<div>" + error + "</div>");
