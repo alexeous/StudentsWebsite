@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Authentication\Impl\AuthenticationService.cs" />
+    <Compile Include="Authorization\IAuthorizationService.cs" />
+    <Compile Include="Authorization\Impl\AuthorizationService.cs" />
+    <Compile Include="Authorization\Role.cs" />
     <Compile Include="Password\Impl\NoHashingPasswordService.cs" />
     <Compile Include="Password\IPasswordService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

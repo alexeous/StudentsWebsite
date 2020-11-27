@@ -14,6 +14,11 @@ namespace StudentsWebsite.DataAccess.Repositories.Impl
         {
         }
 
+        public Task<Teacher> GetByUserIdAsync(int userId)
+        {
+            return SetWithIncludedProperties().FirstOrDefaultAsync(t => t.User.Id == userId);
+        }
+
         protected override IQueryable<Teacher> IncludeProperties(DbSet<Teacher> set)
         {
             return set.Include(t => t.User);
