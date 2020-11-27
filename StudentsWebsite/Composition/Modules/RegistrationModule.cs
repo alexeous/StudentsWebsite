@@ -12,9 +12,9 @@ namespace StudentsWebsite.Composition.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<UserRegistrationService>().As<IUserRegistrationService>().InstancePerRequest();
-            builder.RegisterType<StudentRegistrationService>().As<IStudentRegistrationService>().InstancePerRequest();
-            builder.RegisterType<TeacherRegistrationService>().As<ITeacherRegistrationService>().InstancePerRequest();
+            builder.RegisterType<UserRegistrationService>().As<IUserRegistrationService>().InstancePerLifetimeScope();
+            builder.RegisterType<StudentRegistrationService>().As<IStudentRegistrationService>().InstancePerLifetimeScope();
+            builder.RegisterType<TeacherRegistrationService>().As<ITeacherRegistrationService>().InstancePerLifetimeScope();
         }
     }
 }

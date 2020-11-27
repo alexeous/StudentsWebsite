@@ -32,6 +32,7 @@ namespace StudentsWebsite.Composition
             builder.RegisterModule(new RegistrationModule());
             builder.RegisterModule(new PasswordModule());
             builder.RegisterModule(new AuthenticationModule());
+            builder.RegisterModule(new AuthorizationModule());
 
             var container = builder.Build();
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);

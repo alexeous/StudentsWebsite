@@ -13,10 +13,10 @@ namespace StudentsWebsite.Composition.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<StudentRepository>().As<IStudentRepository>().InstancePerRequest();
-            builder.RegisterType<TeacherRepository>().As<ITeacherRepository>().InstancePerRequest();
-            builder.RegisterType<MarkRepository>().As<IMarkRepository>().InstancePerRequest();
-            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerRequest();
+            builder.RegisterType<StudentRepository>().As<IStudentRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<TeacherRepository>().As<ITeacherRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<MarkRepository>().As<IMarkRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace StudentsWebsite.Composition.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<NoHashingPasswordService>().As<IPasswordService>().InstancePerRequest();
+            builder.RegisterType<NoHashingPasswordService>().As<IPasswordService>().InstancePerLifetimeScope();
         }
     }
 }
