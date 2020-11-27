@@ -71,7 +71,7 @@
                         this.redirectToLoginPage();
                     },
                     error: (model, response) => {
-                        // Backbone treats empty json in the response body is treated as an error for some reason
+                        // empty json in the response body is treated as an error for some reason
                         if (response.status == 200) { 
                             this.redirectToLoginPage();
                             return;

@@ -4,6 +4,7 @@
 }
 
 @Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/backbone")
 
 <style>
     label {
@@ -15,61 +16,61 @@
         margin: 5px;
     }
 </style>
-<script>
-    $(document).ready(function () {
-        $("#registerBtn").click(function () {
-            clearErrors();
-            sendRequest();
+@*<script>
+        $(document).ready(function () {
+            $("#registerBtn").click(function () {
+                clearErrors();
+                sendRequest();
+            });
         });
-    });
 
-    function sendRequest() {
-        $.ajax({
-            url: "/api/register/teacher",
-            type: "POST",
-            data: getUserData(),
-            success: function (data) {
-                window.location.href = "@Url.Action("Login", "Login")";
-            },
-            error: function (data) {
-                if (data.responseJSON.ModelState != undefined) {
-                    displayErrors(data.responseJSON.ModelState);
+        function sendRequest() {
+            $.ajax({
+                url: "/api/register/teacher",
+                type: "POST",
+                data: getUserData(),
+                success: function (data) {
+                    window.location.href = "@Url.Action("Login", "Login")";
+                },
+                error: function (data) {
+                    if (data.responseJSON.ModelState != undefined) {
+                        displayErrors(data.responseJSON.ModelState);
+                    }
+                    else {
+                        displayErrors(data.responseJSON);
+                    }
                 }
-                else {
-                    displayErrors(data.responseJSON);
-                }
-            }
-        });
-    }
+            });
+        }
 
-    function getUserData() {
-        return {
-            FirstName: $("#firstName").val(),
-            LastName: $("#lastName").val(),
-            Subject: $("#subject").val(),
-            Email: $("#email").val(),
-            Password: $("#password").val(),
-            ConfirmPassword: $("#confirmPassword").val(),
-            SecretWord: $("#secretWord").val()
-        };
-    }
+        function getUserData() {
+            return {
+                FirstName: $("#firstName").val(),
+                LastName: $("#lastName").val(),
+                Subject: $("#subject").val(),
+                Email: $("#email").val(),
+                Password: $("#password").val(),
+                ConfirmPassword: $("#confirmPassword").val(),
+                SecretWord: $("#secretWord").val()
+            };
+        }
 
-    function clearErrors() {
-        $("#errors").addClass("hidden");
-        $("#errors").text("");
-    }
+        function clearErrors() {
+            $("#errors").addClass("hidden");
+            $("#errors").text("");
+        }
 
-    function displayErrors(errors) {
-        $("#errors").removeClass("hidden");
-        $.each(errors, (_, error) => {
-            $("#errors").append("<div>" + error + "</div>");
-        });
-    }
-</script>
+        function displayErrors(errors) {
+            $("#errors").removeClass("hidden");
+            $.each(errors, (_, error) => {
+                $("#errors").append("<div>" + error + "</div>");
+            });
+        }
+    </script>*@
 
 <h2>Teacher Registration</h2>
 
-<div>
+<div id="registration-form">
     <div class="item">
         <label>First Name</label>
         <input type="text" id="firstName" />
@@ -99,5 +100,61 @@
         <input type="text" id="secretWord" />
     </div>
     <div class="item alert-danger hidden" id="errors"></div>
-    <button id="registerBtn">Register the Teacher</button>
+    <button id="register-button">Register the Teacher</button>
 </div>
+
+<script>
+    var TeacherModel = Backbone.Model.extend({
+        url: "/api/register/teacher"
+    });
+
+    var TeacherRegisterView = Backbone.View.extend({
+        model: new TeacherModel(),
+        el: "#registration-form",
+        events: {
+            "click #register-button": "register"
+        },
+
+        register: function () {
+            $("#errors").addClass("hidden");
+            $("#errors").text("");
+
+            this.model.save({
+                firstName: this.$("#firstName").val(),
+                lastName: this.$("#lastName").val(),
+                email: this.$("#email").val(),
+                subject: this.$("#subject").val(),
+                password: this.$("#password").val(),
+                confirmPassword: this.$("#confirmPassword").val(),
+                secretWord: this.$("#secretWord").val(),
+            },
+                {
+                    success: () => {
+                        this.redirectToLoginPage();
+                    },
+                    error: (model, response) => {
+                        // empty json in the response body is treated as an error for some reason
+                        if (response.status == 200) {
+                            this.redirectToLoginPage();
+                            return;
+                        }
+                        this.displayErrors(response);
+                    }
+                });
+        },
+
+        redirectToLoginPage: function () {
+            window.location.href = "@Url.Action("Login", "Login")";
+        },
+
+        displayErrors: function (response) {
+            this.$("#errors").removeClass("hidden");
+            let errors = response.responseJSON.ModelState || response.responseJSON;
+            $.each(errors, (_, error) => {
+                this.$("#errors").append("<div>" + error + "</div>");
+            });
+        }
+    });
+
+    var registerView = new TeacherRegisterView();
+</script>
