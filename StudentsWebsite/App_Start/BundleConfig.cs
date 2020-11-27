@@ -22,9 +22,14 @@ namespace StudentsWebsite
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/backbone").Include(
+                      "~/Scripts/underscore-min.js",
+                      "~/Scripts/backbone-min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
         }
     }
 }
