@@ -1,0 +1,178 @@
+﻿@{
+    ViewBag.Title = "Student Editing";
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/backbone")
+
+<style>
+    .field-label {
+        display: inline-block;
+        width: 100px;
+    }
+
+    .item {
+        margin: 5px;
+    }
+</style>
+
+<h2>Student Editing</h2>
+
+<script type="text/template" id="teacher-item-template">
+    <div class="item">
+        <label>
+            <input class="visited-toggle" type="checkbox" <%= visited ? 'checked' : '' %>>
+            <%- text %>
+        </label>
+    </div>
+</script>
+
+<div id="editing-form">
+    <div id="fields-container">
+        <div class="item">
+            <label class="field-label">First Name</label>
+            <input type="text" id="firstName" />
+        </div>
+        <div class="item">
+            <label class="field-label">Last Name</label>
+            <input type="text" id="lastName" />
+        </div>
+        <div>
+            Visited Teachers
+        </div>
+        <ul id="teacher-list">
+        </ul>
+        <button id="save-button">Save</button>
+    </div>
+    <div class="item alert-danger hidden" id="errors"></div>
+</div>
+
+<script>
+    var TeacherModel = Backbone.Model.extend({
+        defaults: {
+            id: 0,
+            text: "",
+            visited: false
+        },
+        toggleVisited: function () {
+            this.set({ visited: !this.get("visited") });
+        }
+    });
+
+    var TeacherView = Backbone.View.extend({
+        tagName: "li",
+        template: _.template($("#teacher-item-template").html()),
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+            this.toggle = this.$(".visited-toggle");
+            return this;
+        },
+        events: {
+            "click .visited-toggle": "toggleVisited"
+        },
+
+        toggleVisited: function () {
+            this.model.toggleVisited();
+        }
+    });
+
+    var StudentEditingModel = Backbone.Model.extend({
+        defaults: {
+            StudentId: 0,
+            FirstName: "",
+            LastName: "",
+            AllTeachers: [],
+            VisitedTeacherIds: []
+        },
+        url: "/api/editing/student",
+        isTeacherVisited: function (teacherId) {
+            return this.get('VisitedTeacherIds').indexOf(teacherId) !== -1;
+        }
+    });
+
+    var StudentEditingView = Backbone.View.extend({
+        model: new StudentEditingModel(),
+        el: "#editing-form",
+        events: {
+            "click #save-button": "save"
+        },
+        initialize: function () {
+            this.teacherModels = [];
+            this.model.fetch({
+                success: () => {
+                    this.render();
+                },
+                error: (model, response) => {
+                    if (response.status == 401) {
+                        this.$("#fields-container").addClass("hidden");
+                    }
+                    this.displayErrors(response);
+                }
+            })
+        },
+        render: function () {
+            this.$("#firstName").val(this.model.get("FirstName"));
+            this.$("#lastName").val(this.model.get("LastName"));
+            for (var teacher of this.model.get("AllTeachers"))
+                this.addTeacherEntry(teacher);
+            return this;
+        },
+
+        addTeacherEntry: function (teacher) {
+            var data = {
+                id: teacher.Id,
+                text: teacher.FirstName + " " + teacher.LastName + " (" + teacher.Subject + ")",
+                visited: this.model.isTeacherVisited(teacher.Id)
+            };
+            var model = new TeacherModel(data);
+            this.teacherModels.push(model);
+
+            var view = new TeacherView({ model: model });
+            this.$("#teacher-list").append(view.render().el);
+        },
+
+        getVisitedTeacherIds: function () {
+            return this.teacherModels
+                .filter(m => m.get("visited"))
+                .map(m => m.get("id"));
+        },
+
+        save: function () {
+            $("#errors").addClass("hidden");
+            $("#errors").text("");
+
+            this.model.save({
+                FirstName: this.$("#firstName").val(),
+                LastName: this.$("#lastName").val(),
+                AllTeachers: null,
+                VisitedTeacherIds: this.getVisitedTeacherIds()
+            },
+                {
+                    success: () => {
+                        this.redirectToLoginPage();
+                    },
+                    error: (model, response) => {
+                        // empty json in the response body is treated as an error for some reason
+                        if (response.status == 200) {
+                            this.redirectToLoginPage();
+                            return;
+                        }
+                        this.displayErrors(response);
+                    }
+                });
+        },
+
+        redirectToLoginPage: function () {
+            window.location.href = "@Url.Action("Login", "Login")";
+        },
+
+        displayErrors: function (response) {
+            this.$("#errors").removeClass("hidden");
+            let errors = response.responseJSON.ModelState || response.responseJSON;
+            $.each(errors, (_, error) => {
+                this.$("#errors").append("<div>" + error + "</div>");
+            });
+        }
+    });
+
+    var registerView = new StudentEditingView();
+</script>

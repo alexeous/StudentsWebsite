@@ -171,16 +171,20 @@
     <Compile Include="Composition\Modules\RegistrationModule.cs" />
     <Compile Include="Composition\Modules\RepositoryModule.cs" />
     <Compile Include="Composition\Modules\UniversityDbContextModule.cs" />
+    <Compile Include="Controllers\EditingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginApiController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\StudentEditingApiController.cs" />
     <Compile Include="Controllers\StudentRegistrationApiController.cs" />
+    <Compile Include="Controllers\TeachersApiController.cs" />
     <Compile Include="Controllers\TeacherRegistrationApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\StudentEditingModel.cs" />
     <Compile Include="Models\StudentRegistrationModel.cs" />
     <Compile Include="Models\TeacherRegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -224,6 +228,7 @@
     <Content Include="Views\Registration\Student.cshtml" />
     <Content Include="Views\Registration\Teacher.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Editing\Student.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

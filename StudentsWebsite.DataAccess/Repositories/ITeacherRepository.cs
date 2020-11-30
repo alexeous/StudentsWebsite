@@ -10,5 +10,7 @@ namespace StudentsWebsite.DataAccess.Repositories
     public interface ITeacherRepository : IRepository<Teacher>
     {
         Task<Teacher> GetByUserIdAsync(int userId);
+
+        Task<Teacher> GetByEmailAsync(string email);
     }
 }

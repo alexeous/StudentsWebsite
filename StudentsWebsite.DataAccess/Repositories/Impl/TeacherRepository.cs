@@ -19,6 +19,11 @@ namespace StudentsWebsite.DataAccess.Repositories.Impl
             return SetWithIncludedProperties().FirstOrDefaultAsync(t => t.User.Id == userId);
         }
 
+        public Task<Teacher> GetByEmailAsync(string email)
+        {
+            return SetWithIncludedProperties().FirstOrDefaultAsync(s => s.User.Email == email);
+        }
+
         protected override IQueryable<Teacher> IncludeProperties(DbSet<Teacher> set)
         {
             return set.Include(t => t.User);
