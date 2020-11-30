@@ -46,6 +46,9 @@
     <Compile Include="Authorization\IAuthorizationService.cs" />
     <Compile Include="Authorization\Impl\AuthorizationService.cs" />
     <Compile Include="Authorization\Role.cs" />
+    <Compile Include="Editing\Impl\StudentEditingService.cs" />
+    <Compile Include="Editing\IStudentEditingService.cs" />
+    <Compile Include="Editing\NotFoundException.cs" />
     <Compile Include="Password\Impl\NoHashingPasswordService.cs" />
     <Compile Include="Password\IPasswordService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -166,6 +166,7 @@
     <Compile Include="Composition\CompositionRoot.cs" />
     <Compile Include="Composition\Modules\AuthenticationModule.cs" />
     <Compile Include="Composition\Modules\AuthorizationModule.cs" />
+    <Compile Include="Composition\Modules\EditingModule.cs" />
     <Compile Include="Composition\Modules\PasswordModule.cs" />
     <Compile Include="Composition\Modules\RegistrationModule.cs" />
     <Compile Include="Composition\Modules\RepositoryModule.cs" />

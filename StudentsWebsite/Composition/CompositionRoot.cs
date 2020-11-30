@@ -27,12 +27,17 @@ namespace StudentsWebsite.Composition
 
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
-            builder.RegisterModule(new UniversityDbContextModule());
-            builder.RegisterModule(new RepositoryModule());
-            builder.RegisterModule(new RegistrationModule());
-            builder.RegisterModule(new PasswordModule());
-            builder.RegisterModule(new AuthenticationModule());
-            builder.RegisterModule(new AuthorizationModule());
+            var modules = new Autofac.Module[] {
+                new UniversityDbContextModule(),
+                new RepositoryModule(),
+                new RegistrationModule(),
+                new PasswordModule(),
+                new AuthenticationModule(),
+                new AuthorizationModule(),
+                new EditingModule()
+            };
+            foreach (var module in modules) 
+                builder.RegisterModule(module);
 
             var container = builder.Build();
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
