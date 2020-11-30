@@ -64,7 +64,7 @@ namespace StudentsWebsite.Controllers
 
             try
             {
-                await editingService.Edit(editingModel.StudentId, editingModel.FirstName,
+                await editingService.EditAsync(editingModel.StudentId, editingModel.FirstName,
                         editingModel.LastName, editingModel.VisitedTeacherIds);
                 return Ok();
             }

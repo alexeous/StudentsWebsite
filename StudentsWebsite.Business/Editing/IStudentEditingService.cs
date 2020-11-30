@@ -8,6 +8,6 @@ namespace StudentsWebsite.Business.Editing
 {
     public interface IStudentEditingService
     {
-        Task Edit(int studentId, string firstName, string lastName, ICollection<int> teacherIds);
+        Task EditAsync(int studentId, string firstName, string lastName, ICollection<int> teacherIds);
     }
 }

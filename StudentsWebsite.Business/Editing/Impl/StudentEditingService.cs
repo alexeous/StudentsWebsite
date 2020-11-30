@@ -19,7 +19,7 @@ namespace StudentsWebsite.Business.Editing.Impl
             this.teacherRepository = teacherRepository;
         }
 
-        public async Task Edit(int studentId, string firstName, string lastName, ICollection<int> teacherIds)
+        public async Task EditAsync(int studentId, string firstName, string lastName, ICollection<int> teacherIds)
         {
             Student student = await studentRepository.GetByIdAsync(studentId);
             if (student == null)
