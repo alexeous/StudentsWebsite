@@ -23,7 +23,9 @@ namespace StudentsWebsite.DataAccess.Repositories.Impl
 
         protected override IQueryable<Student> IncludeProperties(DbSet<Student> set)
         {
-            return set.Include(s => s.User);
+            return set
+                .Include(s => s.User)
+                .Include(s => s.Teachers);
         }
     }
 }
